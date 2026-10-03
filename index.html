@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100a10">
+  <meta name="description" content="Una página romántica personalizable con 100 razones, recuerdos y una carta.">
+  <title>100 razones por las que te amo — Plantilla personalizable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="stardust" aria-hidden="true"></canvas>
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+  <div class="cursor-halo" aria-hidden="true"><i></i></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <section class="welcome-screen" id="welcome" aria-labelledby="welcome-title">
+    <div class="welcome-grain" aria-hidden="true"></div>
+    <div class="welcome-content">
+      <div class="welcome-kicker"><span class="kicker-line"></span> UNA HISTORIA PARA TI <span class="kicker-line"></span></div>
+      <button class="heart-sigil" id="heartSigil" type="button" aria-label="Un corazón; tócalo varias veces para descubrir una sorpresa">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54S7.5 39.4 7.5 22.8C7.5 14 13.2 9 20.1 9c5.1 0 9.2 3.1 11.9 7.4C34.7 12.1 38.8 9 43.9 9 50.8 9 56.5 14 56.5 22.8 56.5 39.4 32 54 32 54Z"/></svg>
+      </button>
+      <p class="welcome-dedication" id="welcome-dedication">Para alguien especial <span aria-hidden="true">♥</span></p>
+      <p class="welcome-prelude">Preparé algo para ti...</p>
+      <h1 id="welcome-title">100 razones<br><em>por las que te amo</em></h1>
+      <p class="welcome-subtitle" id="welcome-subtitle">Y aun así, siento que 100 no son suficientes.</p>
+      <button class="button button--primary button--start" id="startButton" type="button">
+        <span>Comenzar</span><span class="button-heart" aria-hidden="true">♥</span>
+      </button>
+      <button class="continue-link" id="continueButton" type="button" hidden>Continuar donde lo dejaste <span aria-hidden="true">↗</span></button>
+      <div class="welcome-footnote"><span class="tiny-star">✦</span> Hecho con amor, para guardar <span class="tiny-star">✦</span></div>
+    </div>
+    <div class="welcome-orbit orbit--outer" aria-hidden="true"></div>
+    <div class="welcome-orbit orbit--inner" aria-hidden="true"></div>
+  </section>
+
+  <main class="experience" id="experience" hidden>
+    <header class="site-header">
+      <a class="wordmark" href="#reasons" aria-label="Ir al comienzo de las razones"><span class="wordmark-mark">100<span>♥</span></span><span class="wordmark-caption">UNA CARTA EN CIEN PARTES</span></a>
+      <nav class="site-nav" aria-label="Navegación de la experiencia">
+        <a class="nav-link is-current" href="#reasons">Razones</a>
+        <a class="nav-link" href="#memories" id="navMemories" aria-disabled="true">Recuerdos</a>
+        <a class="nav-link" href="#letter" id="navLetter" aria-disabled="true">Carta</a>
+        <a class="nav-link" href="#the-end" id="navFinal" aria-disabled="true">Final</a>
+      </nav>
+      <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Activar música" title="Música">
+        <span class="sound-icon" aria-hidden="true">♫</span><span class="sound-label">MÚSICA</span><span class="sound-state">OFF</span>
+      </button>
+    </header>
+
+    <section class="story-section reasons-section" id="reasons" aria-labelledby="story-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span class="eyebrow-star">✦</span> UN UNIVERSO PEQUEÑO, SOLO NUESTRO</p>
+        <h2 id="story-title">100 razones <em>por las que te amo</em></h2>
+        <p class="section-subtitle">Y aun así, siento que 100 no son suficientes.</p>
+      </div>
+
+      <div class="progress-panel" aria-label="Progreso de la historia">
+        <div class="progress-copy"><span id="progressSentence">Aún quedan 100 pequeñas razones por descubrir.</span><span class="progress-count"><strong id="progressCount">0</strong><span> / 100</span></span></div>
+        <div class="progress-track" role="progressbar" aria-label="Razones descubiertas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
+      </div>
+
+      <div class="discovery-layout">
+        <div class="card-column">
+          <p class="chapter-label" id="chapterLabel">CAPÍTULO I <span>·</span> EL COMIENZO</p>
+          <div class="reason-card-wrap" id="reasonCardWrap">
+            <button class="reason-card" id="reasonCard" type="button" aria-expanded="false" aria-label="Descubrir razón número 1">
+              <span class="card-inner" id="cardInner">
+                <span class="card-face card-front" aria-hidden="true">
+                  <span class="card-ornament ornament-top">✧ <i>✦</i> ✧</span>
+                  <span class="card-symbol" id="cardSymbol"></span>
+                  <span class="card-number" id="cardNumber">RAZÓN <b>#01</b></span>
+                  <span class="card-invitation">Toca para descubrir</span>
+                  <span class="card-ornament ornament-bottom">✧ <i>♥</i> ✧</span>
+                </span>
+                <span class="card-face card-back" id="cardBack" aria-hidden="true">
+                  <span class="card-back-top"><span id="reasonNumberBack">01</span><span class="card-back-star">✦</span></span>
+                  <span class="reason-category" id="reasonCategory"></span>
+                  <span class="reason-copy" id="reasonText"></span>
+                  <span class="card-back-signature">Con amor, siempre <span>♥</span></span>
+                </span>
+              </span>
+            </button>
+            <span class="card-glint" aria-hidden="true"></span>
+          </div>
+          <div class="card-actions">
+            <p class="tap-hint" id="tapHint">Un pequeño secreto espera del otro lado.</p>
+            <button class="button button--primary button--next" id="nextButton" type="button" hidden>Descubrir la siguiente <span aria-hidden="true">♥</span></button>
+          </div>
+        </div>
+        <aside class="side-note" aria-label="Una nota romántica">
+          <span class="side-note-index">01 <i>—</i> 100</span>
+          <div class="side-note-rule"></div>
+          <p>No son solo razones. Son pequeñas ventanas a todo lo que siento cuando pienso en ti.</p>
+          <span class="side-note-signature">Con cariño <span>♥</span></span>
+          <button class="archive-link" id="archiveButton" type="button" hidden>Ver razones descubiertas <span aria-hidden="true">↗</span></button>
+        </aside>
+      </div>
+
+      <div class="chapter-dots" id="chapterDots" aria-label="Hitos de la historia">
+        <span class="chapter-dot is-active" data-chapter="1"><i></i><b>01</b></span><span class="dot-connector"></span>
+        <span class="chapter-dot" data-chapter="2"><i></i><b>25</b></span><span class="dot-connector"></span>
+        <span class="chapter-dot" data-chapter="3"><i></i><b>50</b></span><span class="dot-connector"></span>
+        <span class="chapter-dot" data-chapter="4"><i></i><b>75</b></span><span class="dot-connector"></span>
+        <span class="chapter-dot" data-chapter="5"><i></i><b>100</b></span>
+      </div>
+    </section>
+
+    <section class="memories-section story-section" id="memories" hidden aria-labelledby="memories-title">
+      <div class="section-heading section-heading--compact">
+        <p class="eyebrow"><span class="eyebrow-star">✦</span> UN LUGAR PARA NOSOTROS</p>
+        <h2 id="memories-title">Tus <em>recuerdos</em></h2>
+        <p class="section-subtitle">Añade fotos para crear una galería de momentos especiales.</p>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="section-action"><button class="button button--quiet" id="memoriesContinue" type="button">Seguir leyendo <span aria-hidden="true">↘</span></button></div>
+    </section>
+
+    <section class="letter-section story-section" id="letter" hidden aria-labelledby="letter-title">
+      <div class="letter-stage">
+        <div class="letter-seal" aria-hidden="true"><span>♥</span></div>
+        <p class="eyebrow"><span class="eyebrow-star">✦</span> UNA CARTA PARA GUARDAR</p>
+        <h2 id="letter-title">Antes de que termine...</h2>
+        <div class="letter-paper">
+          <span class="paper-corner paper-corner--tl"></span><span class="paper-corner paper-corner--br"></span>
+          <p class="letter-copy" id="letterCopy" aria-label="Carta para alguien especial"><span id="typedLetter" aria-hidden="true"></span><span class="type-caret" id="typeCaret" aria-hidden="true"></span></p>
+          <button class="read-all" id="readAllButton" type="button" hidden>Leer carta completa <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="section-action"><button class="button button--quiet" id="letterContinue" type="button" hidden>Ver los recuerdos <span aria-hidden="true">↘</span></button></div>
+      </div>
+    </section>
+
+    <section class="final-section story-section" id="the-end" hidden aria-labelledby="final-title">
+      <div class="final-halo" aria-hidden="true"></div>
+      <p class="eyebrow"><span class="eyebrow-star">✦</span> FIN... POR AHORA</p>
+      <div class="final-words" id="finalWords">
+        <p>100 razones.</p><p>1 persona.</p><p>Mi persona favorita.</p>
+      </div>
+      <h2 id="final-title">Te amo, <em id="finalName">alguien especial.</em> <span aria-hidden="true">♥</span></h2>
+      <button class="final-heart" id="finalHeart" type="button" aria-label="Toca el corazón para ver un pequeño milagro"><span>♥</span></button>
+      <p class="final-whisper">Fin... por ahora.</p>
+      <div class="final-actions">
+        <button class="button button--primary" id="secretButton" type="button" hidden>Hay algo más... <span aria-hidden="true">✦</span></button>
+        <button class="button button--quiet" id="restartButton" type="button">Volver a empezar <span aria-hidden="true">↺</span></button>
+      </div>
+    </section>
+
+    <footer class="site-footer" id="siteFooter"><span>Hecho despacio, pensado en ti.</span><button id="psButton" type="button" aria-label="Una nota escondida">✦</button><span>— con cariño <b>♥</b></span><span class="ps-secret" id="psSecret" hidden>Posdata: Te amo más de lo que esta página puede explicar.</span></footer>
+  </main>
+
+  <section class="hundred-screen" id="hundredScreen" hidden aria-live="polite" aria-labelledby="hundredLabel">
+    <div class="hundred-glow" aria-hidden="true"></div>
+    <p class="hundred-label" id="hundredLabel">RAZÓN <span>#100</span></p>
+    <div class="hundred-copy" id="hundredCopy"></div>
+    <p class="hundred-name" id="hundredName" hidden>Alguien especial <span>♥</span></p>
+    <button class="button button--primary hundred-continue" id="hundredContinue" type="button" hidden>Leer mi carta <span aria-hidden="true">↘</span></button>
+  </section>
+
+  <audio id="ambientAudio" loop preload="none"></audio>
+
+  <dialog class="story-dialog" id="milestoneDialog" aria-labelledby="milestoneTitle">
+    <button class="dialog-close" type="button" data-close="milestoneDialog" aria-label="Cerrar">×</button>
+    <span class="dialog-sparkle" aria-hidden="true">✧</span>
+    <p class="eyebrow">UN PEQUEÑO MOMENTO</p><h2 id="milestoneTitle"></h2><p class="dialog-copy" id="milestoneCopy"></p>
+    <button class="button button--primary" id="milestoneContinue" type="button">Continuar <span aria-hidden="true">♥</span></button>
+  </dialog>
+
+  <dialog class="story-dialog archive-dialog" id="archiveDialog" aria-labelledby="archiveTitle">
+    <button class="dialog-close" type="button" data-close="archiveDialog" aria-label="Cerrar">×</button>
+    <p class="eyebrow">LO QUE YA HAS DESCUBIERTO</p><h2 id="archiveTitle">Pequeñas razones</h2><div class="archive-grid" id="archiveGrid"></div>
+  </dialog>
+
+  <dialog class="story-dialog secret-dialog" id="secretDialog" aria-labelledby="secretTitle">
+    <button class="dialog-close" type="button" data-close="secretDialog" aria-label="Cerrar">×</button>
+    <span class="dialog-sparkle" aria-hidden="true">♥</span><p class="eyebrow">POR SIEMPRE, OTRA VEZ</p><h2 id="secretTitle">Si pudiera elegir nuevamente...</h2><p class="dialog-copy">Te elegiría otra vez.</p>
+  </dialog>
+
+  <dialog class="lightbox-dialog" id="lightboxDialog" aria-label="Fotografía ampliada">
+    <button class="dialog-close dialog-close--lightbox" type="button" data-close="lightboxDialog" aria-label="Cerrar fotografía">×</button>
+    <img id="lightboxImage" alt=""><p id="lightboxCaption"></p>
+  </dialog>
+
+  <div class="reduced-motion-note" id="motionNote" hidden>Movimiento reducido activado</div>
+</body>
+</html>
